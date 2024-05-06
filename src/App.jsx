@@ -30,14 +30,33 @@ function reducer(state,{type,payload}){
             ...state,
             currentOperation: result.toString()
           }
-        }
-
-
-
+  }
+  else if(state.operation==='*'){
+    let result=parseFloat(state.previousOperation)*parseFloat(state.currentOperation)
+    return{
+      ...state,
+      currentOperation: result.toString()
+    }
 
 
   }
+  else if(state.operation==='+'){
+    let result=parseFloat(state.previousOperation)+parseFloat(state.currentOperation)
+    return{
+      ...state,
+      currentOperation: result.toString()
+    }
 
+  }
+  else if(state.operation==='-'){
+    let result=parseFloat(state.previousOperation)-parseFloat(state.currentOperation)
+    return{
+      ...state,
+      currentOperation: result.toString()
+    }
+  }
+
+}
 }
 
 function App() {
@@ -59,17 +78,17 @@ function App() {
 
         <button className='item5' onClick={()=>dispatch({type: 'add digit',payload: {digit: 2}})}>2</button>
         <button className='item6' onClick={()=>dispatch({type: 'add digit',payload: {digit: 3}})}>3</button>
-        <button className='item7'>*</button>
+        <button className='item3' onClick={()=>dispatch({type: 'set operation',payload: {operation: '*'}})}>*</button>
         <button className='item8' onClick={()=>dispatch({type: 'add digit',payload: {digit: 4}})}>4</button>
         <button className='item9' onClick={()=>dispatch({type: 'add digit',payload: {digit: 5}})}>5</button>
         <button className='item10' onClick={()=>dispatch({type: 'add digit',payload: {digit: 6}})}>6</button>
-        <button className='item11'>+</button>
-        <button className='item12' onClick={()=>dispatch({type: 'add digit',payload: {digit: 1}})}>7</button>
-        <button className='item13' onClick={()=>dispatch({type: 'add digit',payload: {digit: 1}})}>8</button>
-        <button className='item14' onClick={()=>dispatch({type: 'add digit',payload: {digit: 1}})}>9</button>
-        <button className='item15'>-</button>
+        <button className='item3' onClick={()=>dispatch({type: 'set operation',payload: {operation: '+'}})}>+</button>
+        <button className='item12' onClick={()=>dispatch({type: 'add digit',payload: {digit: 7}})}>7</button>
+        <button className='item13' onClick={()=>dispatch({type: 'add digit',payload: {digit: 8}})}>8</button>
+        <button className='item14' onClick={()=>dispatch({type: 'add digit',payload: {digit: 9}})}>9</button>
+        <button className='item3' onClick={()=>dispatch({type: 'set operation',payload: {operation: '-'}})}>-</button>
         <button className='item16'>.</button>
-        <button className='item17' onClick={()=>dispatch({type: 'add digit',payload: {digit: 1}})}>1</button>
+        <button className='item17' onClick={()=>dispatch({type: 'add digit',payload: {digit: 0}})}>0</button>
         <button className='item18' onClick={()=>dispatch({type: 'calculate'})}>=</button>
 
       </div>
