@@ -1,17 +1,31 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+function reducer(state,{type,payload}){
+  switch(type){
+    case "add digit":
+      return{
+        ...state,
+        currentOperation: `${state.currentOperation}${payload.digit}`,
+      }
+
+
+  }
+
+}
 
 function App() {
+  const [{previousOperation,currentOperation,operation}, dispatch]=useReducer(reducer,{})
+
   
 
   return (
     <>
       <div className='container-grid'>
         <div className='output'>
-          <div className='prev-operation'></div>
-          <div className='current-operation'></div>
+          <div className='previousOperation'></div>
+          <div className='currentOperation'></div>
         </div>
         <button className='item1'>AC</button>
         <button className='item2'>DEL</button>
